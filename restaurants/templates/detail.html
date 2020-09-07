@@ -10,27 +10,25 @@
   {% if restaurant.logo %}
     <img class="card-img-top" src="{{restaurant.logo.url}}" alt="Hey Noob, look at me...">
   {% endif %}
-  <div class="card-body">
+  <div class="card-body text-center">
     <h5 class="card-title">{{restaurant.name}}</h5>
     <p class="card-text">{{restaurant.description|linebreaks}}</p>
     <p class="card-text">Opening Time: {{restaurant.opening_time}}</p>
     <p class="card-text">Closing Time: {{restaurant.closing_time}}</p>
+    <p class="card-text"><strong>ITEMS</strong></p>
     {% for item in items %}
-      <ul class="card-text">
-        <li><strong>{{item.name}}</strong></li>
-        <li>{{item.description}}</li>
-        <li>{{item.price}}</li>
-      </ul>
+        <strong>{{item.name}} </strong>| {{item.description}} | {{item.price}}
     {% endfor %}
+    <hr>
     <div class="row text-center">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <a href="{% url 'restaurant-update' restaurant.id %}" class="btn btn-outline-primary btn-block">Update</a>
         </div>
-        <div class="col-md-6">
-            <a href="{% url 'restaurant-delete' restaurant.id %}" class="btn btn-outline-danger btn-block">Delete</a>
+        <div class="col-md-4">
+          <a href="{% url 'item-create' restaurant.id %}" class="btn btn-outline-success btn-block">Add An Item</a>
         </div>
-        <div class="col-md-6">
-          <a href="{% url 'item-create' restaurant.id %}" class="btn btn-outline-danger btn-block">Add An Item</a>
+        <div class="col-md-4">
+            <a href="{% url 'restaurant-delete' restaurant.id %}" class="btn btn-outline-danger btn-block">Delete</a>
         </div>
     </div>
   </div>
